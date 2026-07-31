@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ton apéro dînatoire de l'été · NutriWell</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Open+Sans:wght@400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --creme:#FAF7F5; --creme2:#FBEDE9; --poudre:#F8E5E2; --ballerine:#ECB5B0;
+    --capucine:#DB6350; --capucine-fonce:#B84F3F; --brun:#2D2326; --gris:#6b5651;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Open Sans',sans-serif;background:var(--creme);color:var(--brun);line-height:1.5;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 60px;}
+
+  /* HEADER */
+  header{text-align:center;padding:48px 18px 30px;position:relative;}
+  .eyebrow{display:inline-block;background:var(--capucine);color:#fff;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:22px;margin-bottom:18px;}
+  header .script{font-family:'Dancing Script',cursive;font-size:34px;color:var(--capucine);font-weight:700;line-height:1;}
+  header h1{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:var(--capucine-fonce);line-height:1.05;margin-bottom:14px;}
+  header p{font-size:16px;color:var(--gris);max-width:520px;margin:0 auto;}
+  .flower-sep{color:var(--ballerine);font-size:20px;margin:22px 0 6px;}
+
+  /* FORMULE */
+  .formule{background:var(--capucine-fonce);color:var(--creme);border-radius:22px;padding:28px 26px;margin:10px 0 36px;box-shadow:0 12px 34px rgba(184,79,63,0.2);}
+  .formule h2{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:6px;text-align:center;}
+  .formule .lead{text-align:center;font-size:14px;color:var(--poudre);margin-bottom:20px;}
+  .formule .lead b{color:#fff;}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  @media(max-width:600px){.fgrid{grid-template-columns:1fr;}}
+  .fcard{background:rgba(250,247,245,0.12);border:1px solid rgba(236,181,176,0.35);border-radius:14px;padding:16px;text-align:center;}
+  .fcard .n{font-family:'Playfair Display',serif;font-size:17px;color:#fff;font-weight:600;margin-bottom:6px;}
+  .fcard .d{font-size:12.5px;color:var(--poudre);line-height:1.45;}
+  .fbev{text-align:center;font-size:13px;color:var(--poudre);margin-top:18px;font-style:italic;}
+
+  /* CATEGORIES */
+  .cat{margin-bottom:30px;}
+  .cat-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .cat-head .line{flex:1;height:1.5px;background:var(--ballerine);opacity:0.5;}
+  .cat-head h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--capucine-fonce);font-weight:600;white-space:nowrap;}
+  .cat-head .sub{font-size:12px;color:var(--gris);font-style:italic;}
+
+  /* CARDS */
+  .item{background:#fff;border:1.5px solid rgba(236,181,176,0.55);border-radius:16px;margin-bottom:10px;overflow:hidden;transition:box-shadow .2s;}
+  .item.open{box-shadow:0 8px 26px rgba(184,79,63,0.1);}
+  .item-head{padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:12px;user-select:none;}
+  .item-head:hover{background:rgba(248,229,226,0.3);}
+  .item-title{flex:1;}
+  .item-title .name{font-size:16px;font-weight:700;color:var(--brun);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .badge-vege{background:#e7f0e4;color:#5a7a4f;font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;letter-spacing:0.5px;}
+  .item-title .meta{font-size:12.5px;color:var(--gris);margin-top:3px;}
+  .chev{color:var(--capucine);font-size:20px;transition:transform .25s;flex-shrink:0;}
+  .item.open .chev{transform:rotate(180deg);}
+  .item-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .item.open .item-body{max-height:600px;}
+  .item-inner{padding:4px 20px 20px;border-top:1px solid var(--poudre);}
+  .item-inner h4{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--capucine);font-weight:700;margin:14px 0 6px;}
+  .item-inner p, .item-inner li{font-size:14.5px;color:var(--brun);line-height:1.55;}
+  .item-inner ul{list-style:none;padding-left:0;}
+  .item-inner li{padding-left:20px;position:relative;margin-bottom:3px;}
+  .item-inner li::before{content:'✿';position:absolute;left:0;color:var(--ballerine);font-size:12px;}
+  .item-inner .vege-note{background:rgba(231,240,228,0.5);border-radius:10px;padding:10px 14px;font-size:13.5px;color:#5a7a4f;margin-top:12px;}
+  .item-inner .vege-note b{color:#4a6a3f;}
+  .print-btn{margin-top:16px;background:var(--capucine);color:#fff;border:none;border-radius:20px;padding:10px 22px;font-family:'Open Sans';font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .2s;}
+  .print-btn:hover{background:var(--capucine-fonce);}
+
+  /* CTA */
+  .cta-final{background:linear-gradient(150deg,var(--creme2),var(--poudre));border-radius:22px;padding:34px 28px;text-align:center;margin-top:40px;}
+  .cta-final .fl{font-size:26px;color:var(--capucine);margin-bottom:12px;}
+  .cta-final h3{font-family:'Playfair Display',serif;font-size:23px;color:var(--capucine-fonce);margin-bottom:14px;}
+  .cta-final p{font-size:15px;color:var(--brun);max-width:480px;margin:0 auto 18px;line-height:1.6;}
+  .cta-final .keyword{display:inline-block;background:var(--capucine-fonce);color:#fff;font-family:'Playfair Display',serif;font-size:17px;padding:12px 28px;border-radius:24px;font-weight:600;letter-spacing:1px;}
+  .cta-final .cta-btn{display:inline-block;background:var(--capucine-fonce);color:#fff;font-family:'Open Sans';font-size:16px;font-weight:700;padding:15px 34px;border-radius:28px;text-decoration:none;box-shadow:0 8px 22px rgba(184,79,63,0.28);transition:transform .15s, background .2s;}
+  .cta-final .cta-btn:hover{background:var(--capucine);transform:translateY(-2px);}
+  .cta-final .sign{font-family:'Dancing Script',cursive;font-size:22px;color:var(--capucine-fonce);margin-top:20px;}
+
+  footer{text-align:center;padding:30px 18px 10px;color:var(--capucine-fonce);}
+  footer .fl{font-size:20px;color:var(--capucine);}
+  footer .nm{font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-top:4px;}
+
+  /* PRINT: n'imprimer que la fiche ciblée */
+  @media print{
+    body *{visibility:hidden;}
+    .printing, .printing *{visibility:visible;}
+    .printing{position:absolute;left:0;top:0;width:100%;border:none;box-shadow:none;}
+    .printing .chev, .printing .print-btn{display:none;}
+    .printing .item-body{max-height:none!important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Spécial week-end ✿</div>
+    <div class="script">Ton apéro dînatoire</div>
+    <h1>frais &amp; gourmand</h1>
+    <p>Des idées maison, rapides, avec les produits de l'été. Tu pioches ce qui te plaît, tu composes ton plateau, et tu régales tout le monde.</p>
+    <div class="flower-sep">✿ ✿ ✿</div>
+  </header>
+
+  <!-- FORMULE -->
+  <div class="formule">
+    <h2>La formule clé en main 🎯</h2>
+    <div class="lead">Compte par personne : <b>2 dips + 2-3 bouchées + 1 toast + 1 chaud + 1 sucré</b></div>
+    <div class="fgrid">
+      <div class="fcard"><div class="n">Apéro pour 4</div><div class="d">1 dip + 2 bouchées + 1 toast + 1 sucré</div></div>
+      <div class="fcard"><div class="n">Apéro pour 6-8</div><div class="d">2 dips + 3 bouchées + 2 toasts + 1 chaud + 1 sucré</div></div>
+      <div class="fcard"><div class="n">Grande tablée 10+</div><div class="d">Double les dips, ajoute des bouchées + une planche crudités/olives</div></div>
+    </div>
+    <div class="fbev">Côté boisson : eau pétillante menthe-citron, thé glacé maison, et le verre que tu aimes 🤍</div>
+  </div>
+
+  <!-- Le contenu des catégories est injecté par JS -->
+  <div id="cats"></div>
+
+  <!-- CTA -->
+  <div class="cta-final">
+    <div class="fl">✿</div>
+    <h3>Ces idées t'ont plu ?</h3>
+    <p>C'est un aperçu de ma façon de voir les choses : manger bon, sain, et sans jamais se priver. Si un jour tu veux que ce soit pensé sur-mesure pour toi — ton corps, ton rythme, tes envies — c'est ce qu'on fait ensemble en accompagnement.</p>
+    <p style="margin-bottom:16px;">Clique juste ici et écris-moi <b>« ENTRE NOUS »</b>, on papote 🤍</p>
+    <a href="https://ig.me/m/nutriwellcoaching" target="_blank" rel="noopener" class="cta-btn">💬 M'écrire sur Instagram</a>
+    <div class="sign">Clémence ✿</div>
+  </div>
+
+  <footer>
+    <div class="fl">✿</div>
+    <div class="nm">NutriWell by Clémence</div>
+  </footer>
+
+</div>
+
+<script>
+const data = [
+  { cat:"Les dips & tartinades", sub:"la base qui en jette", items:[
+    { name:"Houmous maison", vege:true, meta:"pour 6-8 pers · 10 min",
+      ing:["1 boîte de pois chiches égouttés","2 c. à s. de tahiné","1 gousse d'ail","Jus d'½ citron","Huile d'olive, cumin, sel"],
+      prep:"Mixe tout ensemble jusqu'à obtenir une texture lisse. Ajuste avec un peu d'eau si besoin. Sers avec un filet d'huile d'olive et une pincée de paprika." },
+    { name:"Tzatziki", vege:true, meta:"pour 6 pers · 10 min",
+      ing:["1 yaourt grec épais","½ concombre râpé et essoré","1 gousse d'ail","Menthe fraîche, jus de citron","Sel, poivre"],
+      prep:"Essore bien le concombre râpé (c'est la clé). Mélange avec le yaourt, l'ail écrasé, la menthe ciselée et le citron. Laisse reposer 30 min au frais." },
+    { name:"Caviar d'aubergine", vege:true, meta:"pour 6 pers · 15 min",
+      ing:["2 aubergines","1 c. à s. de tahiné","1 gousse d'ail","Jus de citron, huile d'olive","Sel, cumin"],
+      prep:"Rôtis les aubergines au four jusqu'à ce qu'elles soient fondantes. Récupère la chair, mixe avec le tahiné, l'ail, le citron et l'huile. Sers frais." },
+    { name:"Rillettes de thon express", vege:false, meta:"pour 6 pers · 10 min",
+      ing:["1 boîte de thon égoutté","3 c. à s. de fromage frais","Jus de citron","Ciboulette, échalote","Sel, poivre"],
+      prep:"Écrase le thon à la fourchette, mélange avec le fromage frais, le citron, l'échalote et la ciboulette. Sers sur des toasts ou avec des crudités." },
+  ]},
+  { cat:"Les bouchées fraîches", sub:"rapides, effet garanti", items:[
+    { name:"Brochettes tomate-mozza-basilic", vege:true, meta:"pour 6 pers (18 pièces) · 10 min",
+      ing:["Tomates cerises","Billes de mozzarella","Feuilles de basilic","Huile d'olive, sel"],
+      prep:"Enfile sur des pics : une tomate, une bille de mozza, une feuille de basilic. Filet d'huile d'olive au moment de servir." },
+    { name:"Melon-jambon cru", vege:false, meta:"pour 6 pers · 5 min",
+      ing:["1 melon bien mûr","Fines tranches de jambon cru"],
+      prep:"Coupe le melon en cubes ou quartiers, enroule chaque morceau d'une fine tranche de jambon cru. Simple et imparable." },
+    { name:"Brochettes pastèque-feta-menthe", vege:true, meta:"pour 6 pers · 10 min",
+      ing:["Pastèque en cubes","Feta en cubes","Menthe fraîche","Poivre du moulin"],
+      prep:"Alterne pastèque, feta et menthe sur des pics. Un tour de moulin à poivre. Le sucré-salé qui surprend toujours." },
+    { name:"Œufs mimosa", vege:true, meta:"pour 6 pers (12 demi) · 15 min",
+      ing:["6 œufs","1 c. à s. de mayo","1 c. à c. de moutarde","Ciboulette, sel, poivre"],
+      prep:"Cuis les œufs durs, coupe-les en deux. Écrase les jaunes avec la mayo, la moutarde et la ciboulette, puis regarnis les blancs." },
+    { name:"Roulés de courgette-chèvre", vege:true, meta:"pour 6 pers · 15 min",
+      ing:["1 courgette","Fromage de chèvre frais","Menthe","Huile d'olive"],
+      prep:"Taille la courgette en fines lamelles, grille-les 1 min de chaque côté. Étale un peu de chèvre + menthe, roule et pique." },
+  ]},
+  { cat:"Les toasts & tartines", sub:"à composer, ça fait maison", items:[
+    { name:"Toasts saumon fumé-fromage frais", vege:false, meta:"pour 6 pers · 10 min",
+      ing:["Pain grillé","Fromage frais","Saumon fumé","Aneth, citron"],
+      prep:"Tartine le pain de fromage frais, dépose une tranche de saumon, un peu d'aneth et un filet de citron." },
+    { name:"Bruschetta tomate-basilic", vege:true, meta:"pour 6 pers · 15 min",
+      ing:["Pain de campagne grillé","Tomates mûres concassées","Ail","Basilic, huile d'olive"],
+      prep:"Frotte le pain grillé avec une gousse d'ail. Garnis de tomates concassées assaisonnées d'huile, de sel et de basilic." },
+    { name:"Tartines avocat-radis", vege:true, meta:"pour 6 pers · 10 min",
+      ing:["Pain complet","1 avocat","Radis","Jus de citron, graines"],
+      prep:"Écrase l'avocat avec du citron, étale sur le pain, dispose des rondelles de radis et parsème de graines." },
+  ]},
+  { cat:"Le petit chaud vite fait", sub:"pour varier du froid", items:[
+    { name:"Mini-frittatas aux légumes", vege:true, meta:"pour 6 pers (12 mini) · 25 min",
+      ing:["6 œufs","½ courgette, ½ poivron","Feta","Sel, poivre, herbes"],
+      prep:"Bats les œufs, ajoute les légumes en petits dés et la feta émiettée. Verse dans un moule à muffins, cuis 15-18 min à 180°C." },
+    { name:"Feuilletés tomate-pesto", vege:true, meta:"pour 6 pers · 20 min",
+      ing:["1 pâte feuilletée","Pesto","Tomates cerises"],
+      prep:"Étale le pesto sur la pâte, dispose des demi-tomates, roule, coupe en tronçons et enfourne 15 min à 180°C." },
+    { name:"Crevettes poêlées ail-citron", vege:false, meta:"pour 6 pers · 10 min",
+      ing:["Crevettes décortiquées","2 gousses d'ail","Persil","Citron, huile d'olive"],
+      prep:"Saute les crevettes 2-3 min avec l'ail, ajoute le persil et un filet de citron. Sers chaud ou tiède, piqué sur des pics." },
+  ]},
+  { cat:"La touche sucrée fraîche", sub:"pour finir en beauté", items:[
+    { name:"Brochettes de fruits de saison", vege:true, meta:"pour 6 pers · 15 min",
+      ing:["Melon, pastèque","Fraises, raisin","(ce que tu as de saison)"],
+      prep:"Coupe les fruits en cubes réguliers et enfile-les sur des pics en alternant les couleurs. Frais et coloré." },
+    { name:"Verrines fromage blanc-fruits rouges", vege:true, meta:"pour 6 pers · 10 min",
+      ing:["Fromage blanc","Fruits rouges frais","Éclats de spéculoos"],
+      prep:"Dans des petites verrines, alterne fromage blanc et fruits rouges. Termine par quelques éclats de spéculoos au moment de servir." },
+  ]},
+];
+
+const catsEl = document.getElementById('cats');
+data.forEach(cat => {
+  const catDiv = document.createElement('div');
+  catDiv.className = 'cat';
+  catDiv.innerHTML = `<div class="cat-head"><h3>${cat.cat}</h3><span class="sub">${cat.sub}</span><span class="line"></span></div>`;
+  cat.items.forEach(it => {
+    const item = document.createElement('div');
+    item.className = 'item';
+    const badge = it.vege ? '<span class="badge-vege">🌱 VÉGÉ</span>' : '';
+    const vegeNote = it.vege ? '' : `<div class="vege-note"><b>Version végé possible :</b> remplace la protéine animale par une option végétale (pois chiches rôtis, feta, œuf) pour une bouchée tout aussi gourmande.</div>`;
+    item.innerHTML = `
+      <div class="item-head">
+        <div class="item-title">
+          <div class="name">${it.name} ${badge}</div>
+          <div class="meta">${it.meta}</div>
+        </div>
+        <div class="chev">⌄</div>
+      </div>
+      <div class="item-body"><div class="item-inner">
+        <h4>Ce qu'il te faut</h4>
+        <ul>${it.ing.map(i=>`<li>${i}</li>`).join('')}</ul>
+        <h4>La prépa</h4>
+        <p>${it.prep}</p>
+        ${vegeNote}
+        <button class="print-btn" onclick="printCard(this)">🖨️ Enregistrer cette fiche</button>
+      </div></div>`;
+    item.querySelector('.item-head').addEventListener('click', ()=> item.classList.toggle('open'));
+    catDiv.appendChild(item);
+  });
+  catsEl.appendChild(catDiv);
+});
+
+function printCard(btn){
+  const card = btn.closest('.item');
+  card.classList.add('open','printing');
+  window.print();
+  setTimeout(()=>card.classList.remove('printing'), 500);
+}
+</script>
+</body>
+</html>
